@@ -54,7 +54,7 @@ void	draw_ceiling_floor(t_mlx *mlx)
 	int				y;
 	unsigned int	ceiling_color;
 
-	ft_bzero(mlx->img.img_data, mlx->win_height * mlx->img.line_length);
+	// ft_bzero(mlx->img.img_data, mlx->win_height * mlx->img.line_length);
 	ceiling_color = color_to_int(mlx->ceiling);
 	y = 0;
 	while (y < mlx->win_height / 2)
