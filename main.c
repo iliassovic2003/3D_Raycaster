@@ -66,7 +66,8 @@ static int	mouse_move(int x, int y, t_mlx *mlx)
 int	setup_hooks_and_start(t_mlx *mlx)
 {
 	render_3d_view(mlx);
-	mlx_hook(mlx->win_ptr, 2, 1L << 0, handle_key, mlx);
+	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, mlx);
+	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, mlx);
 	mlx_hook(mlx->win_ptr, 6, 1L << 6, mouse_move, mlx);
 	mlx_mouse_move(mlx->mlx_ptr, mlx->win_ptr, mlx->win_height / 2,
 			mlx->win_width / 2);
@@ -95,6 +96,12 @@ void	init_game_state(t_mlx *mlx)
 	mlx->player.is_holding_keycard = 0;
 	mlx->player.holding_keycard_type = 0;
 	mlx->show_map = 0;
+	mlx->keys.w = 0;
+	mlx->keys.a = 0;
+	mlx->keys.s = 0;
+	mlx->keys.d = 0;
+	mlx->keys.left = 0;
+	mlx->keys.right = 0;
 }
 
 int	main(int argc, char **argv)

@@ -14,13 +14,14 @@ void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color)
 
 unsigned int	get_pixel_color(t_img *texture, int x, int y)
 {
-	char	*pixel;
+	int	*data;
+	int	pixel;
 
 	if (x < 0 || y < 0 || x >= texture->width || y >= texture->height)
 		return (0);
-	pixel = texture->img_data + (y * texture->line_length + x
-			* (texture->bits_per_pixel / 8));
-	return (*(unsigned int *)pixel);
+	data = (int *)texture->img_data;
+	pixel = data[y * texture->width + x];
+	return (pixel);
 }
 
 static unsigned int	color_to_int(t_color color)
@@ -28,44 +29,30 @@ static unsigned int	color_to_int(t_color color)
 	return ((color.R * 256 * 256) + (color.G * 256) + color.B);
 }
 
-static void	draw_floor(t_mlx *mlx)
+void	draw_floor(t_mlx *mlx, t_render_ray *ray, int x)
 {
-	int				x;
 	int				y;
 	unsigned int	floor_color;
 
 	floor_color = color_to_int(mlx->floor);
-	y = mlx->win_height / 2;
+	y = ray->draw_end;
 	while (y < mlx->win_height)
 	{
-		x = 0;
-		while (x < mlx->win_width)
-		{
-			put_pixel_to_img(mlx, x, y, floor_color);
-			x++;
-		}
+		put_pixel_to_img(mlx, x, y, floor_color);
 		y++;
 	}
 }
 
-void	draw_ceiling_floor(t_mlx *mlx)
+void	draw_ceiling(t_mlx *mlx, t_render_ray *ray, int x)
 {
-	int				x;
 	int				y;
 	unsigned int	ceiling_color;
 
-	ft_bzero(mlx->img.img_data, mlx->win_height * mlx->img.line_length);
 	ceiling_color = color_to_int(mlx->ceiling);
 	y = 0;
-	while (y < mlx->win_height / 2)
+	while (y < ray->draw_start)
 	{
-		x = 0;
-		while (x < mlx->win_width)
-		{
-			put_pixel_to_img(mlx, x, y, ceiling_color);
-			x++;
-		}
+		put_pixel_to_img(mlx, x, y, ceiling_color);
 		y++;
 	}
-	draw_floor(mlx);
 }

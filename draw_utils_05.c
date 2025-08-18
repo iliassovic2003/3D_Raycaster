@@ -86,7 +86,6 @@ void	render_3d_view(t_mlx *mlx)
 	int	minimap_width;
 	int	minimap_height;
 
-	draw_ceiling_floor(mlx);
 	render_walls(mlx);
 	render_sprites(mlx);
 	if (mlx->show_map)

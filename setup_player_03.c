@@ -36,6 +36,7 @@ int	game_loop(t_mlx *mlx)
 		(int)mlx->white_keycard.x == player_tile_x &&
 		(int)mlx->white_keycard.y == player_tile_y)
 		pickup_white(mlx);
+	handle_movement(mlx);
 	render_3d_view(mlx);
 	return (0);
 }

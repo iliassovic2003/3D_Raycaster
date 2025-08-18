@@ -6,7 +6,7 @@ YELLOW    = \033[0;33m
 RESET     = \033[0m
 
 CC = cc -Wall -Wextra -Werror
-MLX_FLAG = -lmlx -lX11 -lXext -lm -g3
+MLX_FLAG = -Lmlx -lmlx -lX11 -lXext -lm -g3
 
 NAME = Cub3D
 

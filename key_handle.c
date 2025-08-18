@@ -60,56 +60,86 @@ static void	cycle_keycards(t_mlx *mlx)
 	printf("Now holding keycard type: %d\n", mlx->player.holding_keycard_type);
 }
 
-static void	set_movement(t_mlx *mlx, t_move *move, int keycode, float step)
+int key_press(int keycode, t_mlx *mlx)
 {
-	move->dx = 0;
-	move->dy = 0;
-	if (keycode == KEY_W)
-	{
-		move->dx = mlx->player.dir_x * step;
-		move->dy = mlx->player.dir_y * step;
-	}
-	else if (keycode == KEY_S)
-	{
-		move->dx = -mlx->player.dir_x * step;
-		move->dy = -mlx->player.dir_y * step;
-	}
-	else if (keycode == KEY_A)
-	{
-		move->dx = -mlx->player.plane_x * step;
-		move->dy = -mlx->player.plane_y * step;
-	}
-	else if (keycode == KEY_D)
-	{
-		move->dx = mlx->player.plane_x * step;
-		move->dy = mlx->player.plane_y * step;
-	}
+    check_keycard_pickup(mlx);
+    if (keycode == KEY_ESC)
+        return (exit_program(mlx), 0);
+    else if (keycode == KEY_TAB)
+        cycle_keycards(mlx);
+    else if (keycode == KEY_M)
+        mlx->show_map = !mlx->show_map;
+    else if (keycode == KEY_F && handle_doors(mlx))
+        return (0);
+    else if (keycode == KEY_W)
+        mlx->keys.w = 1;
+    else if (keycode == KEY_A)
+        mlx->keys.a = 1;
+    else if (keycode == KEY_S)
+        mlx->keys.s = 1;
+    else if (keycode == KEY_D)
+        mlx->keys.d = 1;
+    else if (keycode == KEY_LEFT)
+        mlx->keys.left = 1;
+    else if (keycode == KEY_RIGHT)
+        mlx->keys.right = 1;
+    return (0);
 }
 
-int	handle_key(int keycode, t_mlx *mlx)
+int key_release(int keycode, t_mlx *mlx)
 {
-	float	move_step;
-	float	rot_step;
-	float	buffer;
-	t_move	move;
-
-	move_step = 0.1f;
-	rot_step = 0.1f;
-	buffer = 0.1f;
-	check_keycard_pickup(mlx);
-	if (keycode == KEY_TAB)
-		cycle_keycards(mlx);
-	else if (keycode == KEY_LEFT)
-		rotate_player(mlx, rot_step, 0);
-	else if (keycode == KEY_RIGHT)
-		rotate_player(mlx, rot_step, 1);
-	else if (keycode == KEY_ESC)
-		return (exit_program(mlx), 0);
-	else if (keycode == KEY_M)
-		mlx->show_map = !mlx->show_map;
-	else if (keycode == KEY_F && handle_doors(mlx))
-		return (0);
-	set_movement(mlx, &move, keycode, move_step);
-	move_player(mlx, &move, buffer);
-	return (render_3d_view(mlx), 0);
+    if (keycode == KEY_W)
+        mlx->keys.w = 0;
+    else if (keycode == KEY_A)
+        mlx->keys.a = 0;
+    else if (keycode == KEY_S)
+        mlx->keys.s = 0;
+    else if (keycode == KEY_D)
+        mlx->keys.d = 0;
+    else if (keycode == KEY_LEFT)
+        mlx->keys.left = 0;
+    else if (keycode == KEY_RIGHT)
+        mlx->keys.right = 0;
+    return (0);
 }
+
+void handle_movement(t_mlx *mlx)
+{
+    float move_speed = 0.1f;
+    float rot_speed = 0.1f;
+    t_move move;
+    
+    move.dx = 0;
+    move.dy = 0;
+    
+    if (mlx->keys.w)
+    {
+        move.dx += mlx->player.dir_x * move_speed;
+        move.dy += mlx->player.dir_y * move_speed;
+    }
+    if (mlx->keys.s)
+    {
+        move.dx -= mlx->player.dir_x * move_speed;
+        move.dy -= mlx->player.dir_y * move_speed;
+    }
+    if (mlx->keys.d)
+    {
+        move.dx += mlx->player.plane_x * move_speed;
+        move.dy += mlx->player.plane_y * move_speed;
+    }
+    if (mlx->keys.a)
+    {
+        move.dx -= mlx->player.plane_x * move_speed;
+        move.dy -= mlx->player.plane_y * move_speed;
+    }
+    
+    if (move.dx != 0 || move.dy != 0)
+        move_player(mlx, &move, 0.1f);
+        
+    if (mlx->keys.right)
+        rotate_player(mlx, rot_speed, 1);
+    if (mlx->keys.left)
+        rotate_player(mlx, rot_speed, 0);
+}
+
+

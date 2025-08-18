@@ -80,6 +80,16 @@ typedef struct s_map
     char **map2D;
 }               t_map;
 
+typedef struct s_keys
+{
+    int         w;
+    int         a;
+    int         s;
+    int         d;
+    int         left;
+    int         right;
+}               t_keys;
+
 typedef struct s_mlx
 {
     void        *mlx_ptr;
@@ -98,6 +108,7 @@ typedef struct s_mlx
     int         win_height;
     int         win_width;
     float       animation_timer;
+    t_keys      keys;
 }               t_mlx;
 
 typedef struct s_tmp1
@@ -275,15 +286,15 @@ void			sort_sprites(t_sprite_data *data);
 void			init_render_ray(t_mlx *mlx, t_render_ray *ray, int x);
 void			execute_render_dda(t_mlx *mlx, t_render_ray *ray);
 void			cast_ray(t_mlx *mlx, int x);
-void			draw_ceiling_floor(t_mlx *mlx);
 void			calculate_wall_dimensions(t_mlx *mlx, t_render_ray *ray);
 void			render_3d_view(t_mlx *mlx);
-void			draw_ceiling_floor(t_mlx *mlx);
 int 			exit_program(t_mlx *mlx);
 int				handle_doors(t_mlx *mlx);
 void			move_player(t_mlx *mlx, t_move *move, float buffer);
 void			rotate_player(t_mlx *mlx, float rot_step, int direction);
-int				handle_key(int keycode, t_mlx *mlx);
+int				key_press(int keycode, t_mlx *mlx);
+int				key_release(int keycode, t_mlx *mlx);
+void			handle_movement(t_mlx *mlx);
 int 			load_keycard_textures(t_mlx *mlx);
 int				setup_player_and_window(t_mlx *mlx);
 int 			load_keycard_textures(t_mlx *mlx);
@@ -292,5 +303,10 @@ int				read_map_dimensions(t_mlx *mlx, char *filename, int offset);
 int				fill_map_data(t_mlx *mlx, int fd, int offset);
 int    			opening_file(t_mlx *mlx, char *path);
 void 			first_pass(char **argv, t_mlx *mlx, int *offset);
+void 			draw_floor(t_mlx *mlx, t_render_ray *ray, int x);
+void 			draw_ceiling(t_mlx *mlx, t_render_ray *ray, int x);
+int				calculate_texture_x(t_mlx *mlx, t_render_ray *ray);
+int				calculate_texture_y(t_mlx *mlx, t_render_ray *ray, int y);
+int				get_texture_pixel(t_mlx *mlx, t_render_ray *ray, int tex_x, int tex_y);
 
 #endif
