@@ -89,8 +89,8 @@ static void	setup_player(t_mlx *mlx)
 
 int	setup_player_and_window(t_mlx *mlx)
 {
-	mlx->win_height = 720;
-	mlx->win_width = 1080;
+	mlx->win_height = 1080;
+	mlx->win_width = 1920;
 	setup_player(mlx);
 	if (load_keycard_textures(mlx))
 	{

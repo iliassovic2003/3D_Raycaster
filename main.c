@@ -66,7 +66,7 @@ static int	mouse_move(int x, int y, t_mlx *mlx)
 int	setup_hooks_and_start(t_mlx *mlx)
 {
 	render_3d_view(mlx);
-	mlx_hook(mlx->win_ptr, 2, 1L << 0, handle_key, mlx); // 3, 1L << 1
+	mlx_hook(mlx->win_ptr, 2, 1L << 0, handle_key, mlx);
 	mlx_hook(mlx->win_ptr, 6, 1L << 6, mouse_move, mlx);
 	mlx_mouse_move(mlx->mlx_ptr, mlx->win_ptr, mlx->win_height / 2,
 			mlx->win_width / 2);

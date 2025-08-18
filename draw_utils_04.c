@@ -29,8 +29,11 @@ static void	draw_solid_wall(t_mlx *mlx, t_render_ray *ray,
 	unsigned int	color;
 	int				y;
 
-	(void)tex_data;
-	if (ray->side == 0)
+	if (tex_data->is_door)
+		color = 0x00FF00;
+	else if (tex_data->is_exit_door)
+		color = 0x800080;
+	else if (ray->side == 0)
 		color = (ray->ray_dir_x > 0) ? 0xFF0000 : 0x00FF00;
 	else
 		color = (ray->ray_dir_y > 0) ? 0x0000FF : 0xFFFF00;
