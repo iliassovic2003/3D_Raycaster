@@ -62,7 +62,6 @@ int	load_textures(char *line, t_mlx *mlx)
 	{
 		printf("Not Enough or Invalid Texture Data, Aborting... \n");
 		exit_error = 1;
-		free_arr(split_tmp);
 	}
 	free_arr(split_tmp);
 	return (exit_error);

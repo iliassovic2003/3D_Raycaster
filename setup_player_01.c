@@ -2,10 +2,6 @@
 
 static int	load_normal_door(t_mlx *mlx, int width, int height)
 {
-	mlx->door.texture.img_ptr = mlx_xpm_file_to_image(mlx->mlx_ptr,
-														"./textures/door.xpm",
-														&width,
-														&height);
 	if (!mlx->door.texture.img_ptr)
 	{
 		printf("Error loading door texture: ./textures/door.xpm\n");

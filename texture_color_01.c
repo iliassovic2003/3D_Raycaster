@@ -54,17 +54,21 @@ int	parse_color(char *line, t_mlx *mlx)
 
 	exit_error = 0;
 	split_tmp = ft_split(line, ' ');
-	if (!split_tmp[1])
-		exit_error = 1;
+	if (split_tmp[2] || !split_tmp[1])
+	{
+		free_arr(split_tmp);
+		printf("Misconfiguration Error\n");
+		return (1);
+	}
 	else if (!ft_strcmp(split_tmp[0], "F"))
 	{
 		if (load_color(ft_strtrim(split_tmp[1]), mlx, 0))
-			return (1);
+			exit_error = 1;
 	}
 	else if (!ft_strcmp(split_tmp[0], "C"))
 	{
 		if (load_color(ft_strtrim(split_tmp[1]), mlx, 1))
-			return (1);
+			exit_error = 1;
 	}
 	else
 	{
