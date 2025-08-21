@@ -141,7 +141,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   if (!(line = f(info,&pos,info_size)) ||
       !(tab = mlx_int_str_to_wordtab(line)) || !(width = atoi(tab[0])) ||
       !(height = atoi(tab[1])) || !(nc = atoi(tab[2])) ||
-      !(CXX = atoi(tab[3])) )
+      !(cpp = atoi(tab[3])) )
     RETURN;
   free(tab);
   tab = 0;
