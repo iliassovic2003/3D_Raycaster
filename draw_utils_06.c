@@ -36,7 +36,7 @@ void	draw_floor(t_mlx *mlx, t_render_ray *ray, int x)
 
 	floor_color = color_to_int(mlx->floor);
 	y = ray->draw_end;
-	while (y < mlx->win_height)
+	while (y < mlx->win_height - 1)
 	{
 		put_pixel_to_img(mlx, x, y, floor_color);
 		y++;

@@ -105,8 +105,8 @@ int key_release(int keycode, t_mlx *mlx)
 
 void handle_movement(t_mlx *mlx)
 {
-    float move_speed = 0.1f;
-    float rot_speed = 0.1f;
+    float move_speed = 0.02f;
+    float rot_speed = 0.015f;
     t_move move;
     
     move.dx = 0;

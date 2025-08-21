@@ -35,11 +35,11 @@ void	init_render_ray(t_mlx *mlx, t_render_ray *ray, int x)
 	ray->map_x = (int)mlx->player.p_x;
 	ray->map_y = (int)mlx->player.p_y;
 	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = MAX_DISTANCE;
+		ray->delta_dist_x = 1000000000;
 	else
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = MAX_DISTANCE;
+		ray->delta_dist_y = 1000000000;
 	else
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	init_render_rayv2(mlx, ray);

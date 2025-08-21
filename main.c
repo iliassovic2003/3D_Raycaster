@@ -14,9 +14,15 @@ int	read_map_content(t_mlx *mlx, char *filename, int offset)
 	}
 	flag = fill_map_data(mlx, fd, offset);
 	close(fd);
+	// if (flag == 2)
+	// {
+	// 	printf("Map Error: Bad Configuration\n");
+	// 	free_res(0, mlx, NULL);
+	// 	return (1);
+	// }
 	if (flag == 0)
 	{
-		printf("no coordinates for player, aborting\n");
+		printf("Map Error: No Player's Coordinates\n");
 		free_res(0, mlx, NULL);
 		return (1);
 	}
@@ -39,7 +45,7 @@ static int	mouse_move(int x, int y, t_mlx *mlx)
 	last_x = mlx->win_height / 2;
 	if (abs(tmp.x) > 2)
 	{
-		tmp.fi = tmp.x * 0.0004f;
+		tmp.fi = tmp.x * 0.001f;
 		tmp.fj = mlx->player.dir_x;
 		mlx->player.dir_x = mlx->player.dir_x * cos(tmp.fi) - mlx->player.dir_y
 			* sin(tmp.fi);

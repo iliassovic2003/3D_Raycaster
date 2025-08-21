@@ -23,7 +23,7 @@ int	init_map(t_mlx *mlx)
 		j = 0;
 		while (j < mlx->map.width)
 		{
-			mlx->map.map2D[i][j] = '1';
+			mlx->map.map2D[i][j] = '-';
 			j++;
 		}
 		i++;
@@ -40,6 +40,10 @@ void	fill_map(char *line, t_mlx *mlx, int k, int *flag)
 	{
 		if (line[i] == '0')
 			mlx->map.map2D[k][i] = '0';
+		else if (line[i] == ' ')
+			mlx->map.map2D[k][i] = '-';
+		else if (line[i] == '1')
+			mlx->map.map2D[k][i] = '1';
 		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
 				|| line[i] == 'E')
 		{
@@ -82,6 +86,10 @@ void	fill_map(char *line, t_mlx *mlx, int k, int *flag)
 			mlx->white_keycard.y = k + 0.5;
 			mlx->white_keycard.visible = true;
 		}
+		else if (line[i] == '\n')
+			;
+		else
+			*flag = 2;
 		i++;
 	}
 }
@@ -97,11 +105,13 @@ int	check_map(t_mlx mlx)
 		j = 0;
 		while (j < mlx.map.width)
 		{
-			if ((mlx.map.map2D[0][j] != '1') || (mlx.map.map2D[mlx.map.height
-					- 1][j] != '1'))
+			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i][j + 1] || mlx.map.map2D[i][j + 1] == '-'))
 				return (1);
-			else if ((mlx.map.map2D[i][0] != '1')
-					|| (mlx.map.map2D[i][mlx.map.width - 1] != '1'))
+			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i + 1][j] || mlx.map.map2D[i + 1][j] == '-'))
+				return (1);
+			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i][j - 1] || mlx.map.map2D[i][j - 1] == '-'))
+				return (1);
+			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i - 1][j] || mlx.map.map2D[i - 1][j] == '-'))
 				return (1);
 			j++;
 		}

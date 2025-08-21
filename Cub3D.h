@@ -191,7 +191,6 @@ typedef struct  s_tmp3
 	float	    exit_dist;
 }               t_tmp3;
 
-# define MAX_DISTANCE 1000000000.0
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115

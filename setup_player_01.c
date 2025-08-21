@@ -73,8 +73,8 @@ static int	load_doors_texture(t_mlx *mlx)
 
 static void	setup_player(t_mlx *mlx)
 {
-	mlx->player.p_x = (float)mlx->player.spawn_x;
-	mlx->player.p_y = (float)mlx->player.spawn_y + 0.2f;
+	mlx->player.p_x = (float)mlx->player.spawn_x + 0.5f;
+	mlx->player.p_y = (float)mlx->player.spawn_y + 0.5f;
 	mlx->player.angle = mlx->player.spawn_angle;
 	mlx->animation_timer = 0.0f;
 	mlx->player.dir_x = cos(mlx->player.angle);
@@ -85,8 +85,8 @@ static void	setup_player(t_mlx *mlx)
 
 int	setup_player_and_window(t_mlx *mlx)
 {
-	mlx->win_height = 1080;
-	mlx->win_width = 1920;
+	mlx->win_height = 720;
+	mlx->win_width = 1080;
 	setup_player(mlx);
 	if (load_keycard_textures(mlx))
 	{

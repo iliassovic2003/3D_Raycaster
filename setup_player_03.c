@@ -25,7 +25,7 @@ int	game_loop(t_mlx *mlx)
 
 	player_tile_x = (int)mlx->player.p_x;
 	player_tile_y = (int)mlx->player.p_y;
-	mlx->animation_timer += 0.04f;
+	mlx->animation_timer += 0.02f;
 	if (mlx->animation_timer > 100.0f)
 		mlx->animation_timer = 0.0f;
 	if (mlx->green_keycard.visible &&
