@@ -75,8 +75,7 @@ static int	handle_exit_door(t_mlx *mlx, float exit_dist)
 		else
 			printf("This exit requires a White Keycard.\n");
 	}
-	else if (mlx->player.is_holding_keycard
-			&& mlx->player.holding_keycard_type == 2)
+	else if (mlx->player.is_holding_keycard)
 	{
 		printf("Congratulations! You've escaped!\n");
 		exit_program(mlx);

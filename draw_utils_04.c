@@ -37,8 +37,6 @@ static void	calculate_texture_position(t_mlx *mlx, t_render_ray *ray,
 	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1
 			&& ray->ray_dir_y > 0))
 		tex_data->tex_x = tex_data->texture->width - tex_data->tex_x - 1;
-	
-	// Ensure tex_x is within bounds
 	if (tex_data->tex_x < 0)
 		tex_data->tex_x = 0;
 	if (tex_data->tex_x >= tex_data->texture->width)
@@ -57,12 +55,11 @@ static void	draw_textured_wall(t_mlx *mlx, t_render_ray *ray,
 	int				tex_y;
 	unsigned int	color;
 
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	y = ray->draw_start  -1;
+	while (++y < ray->draw_end)
 	{
 		if (tex_data->is_door || tex_data->is_exit_door)
 		{
-			// Use consistent texture coordinate calculation for doors
 			tex_x = tex_data->tex_x;
 			tex_y = (int)tex_data->tex_pos & (tex_data->texture->height - 1);
 			tex_data->tex_pos += tex_data->step;
@@ -70,7 +67,6 @@ static void	draw_textured_wall(t_mlx *mlx, t_render_ray *ray,
 		}
 		else
 		{
-			// Use the new texture functions for regular walls
 			tex_x = calculate_texture_x(mlx, ray);
 			tex_y = calculate_texture_y(mlx, ray, y);
 			color = get_texture_pixel(mlx, ray, tex_x, tex_y);
@@ -78,7 +74,6 @@ static void	draw_textured_wall(t_mlx *mlx, t_render_ray *ray,
 		if (ray->side == 1 && !tex_data->is_door && !tex_data->is_exit_door)
 			color = (color >> 1) & 8355711;
 		put_pixel_to_img(mlx, x, y, color);
-		y++;
 	}
 }
 

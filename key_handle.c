@@ -29,23 +29,26 @@ static void	check_keycard_pickup(t_mlx *mlx)
 	}
 }
 
+static void assign_first_available_keycard(t_mlx *mlx)
+{
+	if (mlx->player.has_green_keycard)
+	{
+		mlx->player.is_holding_keycard = 1;
+		mlx->player.holding_keycard_type = 1;
+	}
+	else if (mlx->player.has_white_keycard)
+	{
+		mlx->player.is_holding_keycard = 1;
+		mlx->player.holding_keycard_type = 2;
+	}
+}
+
 static void	cycle_keycards(t_mlx *mlx)
 {
 	if (!(mlx->player.has_green_keycard || mlx->player.has_white_keycard))
 		return ;
 	if (!mlx->player.is_holding_keycard)
-	{
-		if (mlx->player.has_green_keycard)
-		{
-			mlx->player.is_holding_keycard = 1;
-			mlx->player.holding_keycard_type = 1;
-		}
-		else if (mlx->player.has_white_keycard)
-		{
-			mlx->player.is_holding_keycard = 1;
-			mlx->player.holding_keycard_type = 2;
-		}
-	}
+        assign_first_available_keycard(mlx);
 	else
 	{
 		if (mlx->player.holding_keycard_type == 1
@@ -57,7 +60,6 @@ static void	cycle_keycards(t_mlx *mlx)
 		else
 			mlx->player.is_holding_keycard = 0;
 	}
-	printf("Now holding keycard type: %d\n", mlx->player.holding_keycard_type);
 }
 
 int key_press(int keycode, t_mlx *mlx)
@@ -103,15 +105,12 @@ int key_release(int keycode, t_mlx *mlx)
     return (0);
 }
 
-void handle_movement(t_mlx *mlx)
+static t_move handle_translation_movement(t_mlx *mlx, float move_speed)
 {
-    float move_speed = 0.025f;
-    float rot_speed = 0.025f;
     t_move move;
     
     move.dx = 0;
     move.dy = 0;
-    
     if (mlx->keys.w)
     {
         move.dx += mlx->player.dir_x * move_speed;
@@ -132,10 +131,20 @@ void handle_movement(t_mlx *mlx)
         move.dx -= mlx->player.plane_x * move_speed;
         move.dy -= mlx->player.plane_y * move_speed;
     }
+    return (move);
+}
+
+void handle_movement(t_mlx *mlx)
+{
+    float move_speed;
+    float rot_speed;
+    t_move move;
     
+    move_speed = 0.025f;
+    rot_speed = 0.025f;
+    move = handle_translation_movement(mlx, move_speed);
     if (move.dx != 0 || move.dy != 0)
         move_player(mlx, &move, 0.1f);
-        
     if (mlx->keys.right)
         rotate_player(mlx, rot_speed, 1);
     if (mlx->keys.left)
