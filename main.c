@@ -14,12 +14,12 @@ int	read_map_content(t_mlx *mlx, char *filename, int offset)
 	}
 	flag = fill_map_data(mlx, fd, offset);
 	close(fd);
-	// if (flag == 2)
-	// {
-	// 	printf("Map Error: Bad Configuration\n");
-	// 	free_res(0, mlx, NULL);
-	// 	return (1);
-	// }
+	if (flag == 2)
+	{
+		printf("Map Error: Bad Configuration\n");
+		free_res(0, mlx, NULL);
+		return (1);
+	}
 	if (flag == 0)
 	{
 		printf("Map Error: No Player's Coordinates\n");
@@ -35,38 +35,56 @@ int	read_map_content(t_mlx *mlx, char *filename, int offset)
 	return (0);
 }
 
-static int	mouse_move(int x, int y, t_mlx *mlx)
+static void rotate_vector(float *x, float *y, float angle)
 {
-	t_tmp2		tmp;
-	static int	last_x;
+    float last_x;
+    float cos_angle;
+    float sin_angle;
+    
+	last_x = *x;
+	cos_angle = cosf(angle);
+	sin_angle = sinf(angle);
+    *x = last_x * cos_angle - *y * sin_angle;
+    *y = last_x * sin_angle + *y * cos_angle;
+}
 
-	(void)y;
-	tmp.x = x - last_x;
-	last_x = mlx->win_height / 2;
-	if (abs(tmp.x) > 2)
-	{
-		tmp.fi = tmp.x * 0.001f;
-		tmp.fj = mlx->player.dir_x;
-		mlx->player.dir_x = mlx->player.dir_x * cos(tmp.fi) - mlx->player.dir_y
-			* sin(tmp.fi);
-		mlx->player.dir_y = tmp.fj * sin(tmp.fi) + mlx->player.dir_y
-			* cos(tmp.fi);
-		tmp.fx = mlx->player.plane_x;
-		mlx->player.plane_x = mlx->player.plane_x * cos(tmp.fi)
-			- mlx->player.plane_y * sin(tmp.fi);
-		mlx->player.plane_y = tmp.fx * sin(tmp.fi) + mlx->player.plane_y
-			* cos(tmp.fi);
-		mlx->player.angle += tmp.fi;
-		while (mlx->player.angle < 0)
-			mlx->player.angle += 2 * M_PI;
-		while (mlx->player.angle > 2 * M_PI)
-			mlx->player.angle -= 2 * M_PI;
-		mlx_mouse_move(mlx->mlx_ptr, mlx->win_ptr, mlx->win_height / 2,
-				mlx->win_width / 2);
-		usleep(800);
-		render_3d_view(mlx);
-	}
-	return (0);
+static float normalize_angle(float angle)
+{
+    angle = fmodf(angle, 2.0f * M_PI);
+    if (angle < 0)
+        angle += 2.0f * M_PI;
+    return (angle);
+}
+
+static int mouse_move(int x, int y, t_mlx *mlx)
+{
+    static int last_x = -1;
+	static int flag;
+    static int accumulated_delta;
+    float delta_x;
+    float rotation_angle;
+    
+    (void)y;
+    if (flag == 0)
+    {
+        last_x = x;
+		flag = 1;
+        return (0);
+    }
+    delta_x = (float)(x - last_x);
+    last_x = mlx->win_height / 2;
+    accumulated_delta += (int)delta_x;
+    if (abs(accumulated_delta) > 1)
+    {
+        rotation_angle = accumulated_delta * 0.001f;
+        accumulated_delta = 0;
+        rotate_vector(&mlx->player.dir_x, &mlx->player.dir_y, rotation_angle);
+        rotate_vector(&mlx->player.plane_x, &mlx->player.plane_y, rotation_angle);
+        mlx->player.angle = normalize_angle(mlx->player.angle + rotation_angle);
+        mlx_mouse_move(mlx->mlx_ptr, mlx->win_ptr,
+				mlx->win_height / 2, mlx->win_width / 2);
+    }
+    return (0);
 }
 
 int	setup_hooks_and_start(t_mlx *mlx)
