@@ -93,6 +93,7 @@ void	first_pass(char **argv, t_mlx *mlx, int *offset)
 		if (!ft_strcmp(line, "\n"))
 		{
 			free(line);
+			(*offset)++;
 			line = get_next_line(fd, 0);
 			continue ;
 		}
@@ -101,6 +102,7 @@ void	first_pass(char **argv, t_mlx *mlx, int *offset)
 		(*offset)++;
 		line = get_next_line(fd, 0);
 	}
+	(*offset)--;
 	if (line)
 		free(line);
 	line = get_next_line(fd, -1);

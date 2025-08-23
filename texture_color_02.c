@@ -48,8 +48,11 @@ int	load_textures(char *line, t_mlx *mlx)
 
 	exit_error = 0;
 	split_tmp = ft_split(line, ' ');
-	if (!split_tmp[1])
+	if (!split_tmp[1] || split_tmp[1][0] == '\n')
+	{
+		printf("Map Error: No Texture Was Given\n");
 		exit_error = 1;
+	}
 	else if (!ft_strcmp(split_tmp[0], "NO"))
 		exit_error = load_texture(split_tmp[1], mlx, 1);
 	else if (!ft_strcmp(split_tmp[0], "SO"))
@@ -60,7 +63,7 @@ int	load_textures(char *line, t_mlx *mlx)
 		exit_error = load_texture(split_tmp[1], mlx, 4);
 	else
 	{
-		printf("Not Enough or Invalid Texture Data, Aborting... \n");
+		printf("Not Enough or Invalid Texture Data\n");
 		exit_error = 1;
 	}
 	free_arr(split_tmp);

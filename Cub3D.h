@@ -306,6 +306,7 @@ void 			draw_floor(t_mlx *mlx, t_render_ray *ray, int x);
 void 			draw_ceiling(t_mlx *mlx, t_render_ray *ray, int x);
 int				calculate_texture_x(t_mlx *mlx, t_render_ray *ray);
 int				calculate_texture_y(t_mlx *mlx, t_render_ray *ray, int y);
+int				setup_hooks_and_start(t_mlx *mlx);
 int				get_texture_pixel(t_mlx *mlx, t_render_ray *ray, int tex_x, int tex_y);
 
 #endif

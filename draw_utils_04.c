@@ -71,8 +71,6 @@ static void	draw_textured_wall(t_mlx *mlx, t_render_ray *ray,
 			tex_y = calculate_texture_y(mlx, ray, y);
 			color = get_texture_pixel(mlx, ray, tex_x, tex_y);
 		}
-		if (ray->side == 1 && !tex_data->is_door && !tex_data->is_exit_door)
-			color = (color >> 1) & 8355711;
 		put_pixel_to_img(mlx, x, y, color);
 	}
 }

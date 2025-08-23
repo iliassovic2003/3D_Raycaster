@@ -60,15 +60,21 @@ static void	draw_minimap_doors(t_mlx *mlx, t_mini_data *data)
 {
 	t_tmp1	tmp;
 
-	tmp.size = data->tile_size;
-	tmp.x = 10 + (int)mlx->door.door_x * data->tile_size;
-	tmp.y = 10 + (int)mlx->door.door_y * data->tile_size;
-	tmp.color = 0x00FF00;
-	draw_hollow_square(mlx, tmp);
-	tmp.x = 10 + (int)mlx->exit_door.door_x * data->tile_size;
-	tmp.y = 10 + (int)mlx->exit_door.door_y * data->tile_size;
-	tmp.color = 0x0964f0;
-	draw_hollow_square(mlx, tmp);
+	if (mlx->door.door_x != -1)
+	{
+		tmp.size = data->tile_size;
+		tmp.x = 10 + (int)mlx->door.door_x * data->tile_size;
+		tmp.y = 10 + (int)mlx->door.door_y * data->tile_size;
+		tmp.color = 0x00FF00;
+		draw_hollow_square(mlx, tmp);
+	}
+	if (mlx->exit_door.door_x != -1)
+	{
+		tmp.x = 10 + (int)mlx->exit_door.door_x * data->tile_size;
+		tmp.y = 10 + (int)mlx->exit_door.door_y * data->tile_size;
+		tmp.color = 0xFF0000;
+		draw_hollow_square(mlx, tmp);
+	}
 }
 
 void	draw_minimap(t_mlx *mlx, int width, int height)

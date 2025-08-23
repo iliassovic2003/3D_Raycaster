@@ -20,12 +20,9 @@ int	init_map(t_mlx *mlx)
 			free(mlx->map.map2D);
 			return (1);
 		}
-		j = 0;
-		while (j < mlx->map.width)
-		{
+		j = -1;
+		while (++j < mlx->map.width)
 			mlx->map.map2D[i][j] = '-';
-			j++;
-		}
 		i++;
 	}
 	return (0);

@@ -29,7 +29,7 @@ void	draw_minimap_keycards(t_mlx *mlx, t_mini_data *data)
 	if (mlx->green_keycard.visible)
 		draw_keycard(mlx, mlx->green_keycard, data->tile_size, 0x00FF00);
 	if (mlx->white_keycard.visible)
-		draw_keycard(mlx, mlx->white_keycard, data->tile_size, 0xFFFFFF);
+		draw_keycard(mlx, mlx->white_keycard, data->tile_size, 0xFF0000);
 }
 
 static void	draw_player_dot(t_mlx *mlx, t_tmp2 tmp, int player_size)

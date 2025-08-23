@@ -9,7 +9,7 @@ static int	load_color_v2(int *r, int *g, int *b, char *line)
 	if (!split_tmp || !split_tmp[0] || !split_tmp[1] 
 			|| !split_tmp[2] || split_tmp[3])
 	{
-		printf("Misconfiguration Error\n");
+		printf("Color Error: Misconfiguration Error\n");
 		free_arr(split_tmp);
 		return (1);
 	}
@@ -58,7 +58,7 @@ int	parse_color(char *line, t_mlx *mlx)
 	if (!split_tmp || !split_tmp[0] || !split_tmp[1]
 			|| split_tmp[2])
 	{
-		printf("Misconfiguration Error\n");
+		printf("Color Error: Misconfiguration Error\n");
 		exit_error = 1;
 	}
 	else if (!ft_strcmp(split_tmp[0], "F"))
