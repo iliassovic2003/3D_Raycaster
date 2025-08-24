@@ -40,20 +40,6 @@ int	exit_program(t_mlx *mlx)
 	exit(0);
 }
 
-int	opening_file(t_mlx *mlx, char *path)
-{
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error opening file\n");
-		exit_program(mlx);
-		exit(1);
-	}
-	return (fd);
-}
-
 static void	check_count(int count, char *line, t_mlx *mlx, int fd)
 {
 	if (count <= 4)
@@ -76,6 +62,14 @@ static void	check_count(int count, char *line, t_mlx *mlx, int fd)
 	}
 	free(line);
 	line = NULL;
+}
+
+static void first_clean(char *line, int fd)
+{
+	if (line)
+		free(line);
+	line = get_next_line(fd, -1);
+	close(fd);
 }
 
 void	first_pass(char **argv, t_mlx *mlx, int *offset)
@@ -103,8 +97,5 @@ void	first_pass(char **argv, t_mlx *mlx, int *offset)
 		line = get_next_line(fd, 0);
 	}
 	(*offset)--;
-	if (line)
-		free(line);
-	line = get_next_line(fd, -1);
-	close(fd);
+	first_clean(line, fd);
 }

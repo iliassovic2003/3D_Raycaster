@@ -27,7 +27,7 @@ static int	load_texture(char *line, t_mlx *mlx, int i)
 			&width, &height);
 	if (!mlx->textures[i].img_ptr)
 	{
-		printf("Error loading texture: %s\n", line);
+		printf("Error loading texture: %s", line);
 		load_texture_error(mlx, trimmed_path, i);
 		return (1);
 	}
@@ -63,7 +63,7 @@ int	load_textures(char *line, t_mlx *mlx)
 		exit_error = load_texture(split_tmp[1], mlx, 4);
 	else
 	{
-		printf("Not Enough or Invalid Texture Data\n");
+		printf("Map Error: Not Enough Texture Data\n");
 		exit_error = 1;
 	}
 	free_arr(split_tmp);

@@ -99,7 +99,7 @@ int	setup_player_and_window(t_mlx *mlx)
 		return (1);
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_width, mlx->win_height,
-			"Nein Schainder");
+			"Nein Schnainder");
 	if (!mlx->win_ptr)
 		return (1);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, mlx->win_width,

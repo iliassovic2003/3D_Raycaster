@@ -19,7 +19,7 @@ static int	load_color_v2(int *r, int *g, int *b, char *line)
 	free_arr(split_tmp);
 	if (*r > 255 || *r < 0 || *g > 255 || *g < 0 || *b > 255 || *b < 0)
 	{
-		printf("Color Range Error\n");
+		printf("Color Error: Range Error\n");
 		return (1);
 	}
 	return (0);
@@ -48,6 +48,13 @@ static int	load_color(char *line, t_mlx *mlx, int i)
 	return (0);
 }
 
+static void printv2(char *msg, int *exit_error)
+{
+	if (msg)
+		printf("%s", msg);
+	*exit_error = 1;
+}
+
 int	parse_color(char *line, t_mlx *mlx)
 {
 	char	**split_tmp;
@@ -57,10 +64,7 @@ int	parse_color(char *line, t_mlx *mlx)
 	split_tmp = ft_split(line, ' ');
 	if (!split_tmp || !split_tmp[0] || !split_tmp[1]
 			|| split_tmp[2])
-	{
-		printf("Color Error: Misconfiguration Error\n");
-		exit_error = 1;
-	}
+		printv2("Color Error: Misconfiguration Error\n", &exit_error);
 	else if (!ft_strcmp(split_tmp[0], "F"))
 	{
 		if (load_color(ft_strtrim(split_tmp[1]), mlx, 0))
@@ -72,10 +76,7 @@ int	parse_color(char *line, t_mlx *mlx)
 			exit_error = 1;
 	}
 	else
-	{
-		printf("Not Enough Color Data, Aborting... \n");
-		exit_error = 1;
-	}
+		printv2("Color Error: Not Enough Data\n", &exit_error);
 	free_arr(split_tmp);
 	return (exit_error);
 }

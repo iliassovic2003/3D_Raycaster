@@ -35,8 +35,8 @@ void handle_movement(t_mlx *mlx)
     float rot_speed;
     t_move move;
     
-    move_speed = 0.025f;
-    rot_speed = 0.025f;
+    move_speed = 0.015f;
+    rot_speed = 0.015f;
     move = handle_translation_movement(mlx, move_speed);
     if (move.dx != 0 || move.dy != 0)
         move_player(mlx, &move, 0.1f);
