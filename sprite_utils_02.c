@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_utils_02.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:24:41 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:54:20 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	init_sprite_render(t_mlx *mlx, t_sprite_data *data,
@@ -80,7 +92,7 @@ void	render_sprites(t_mlx *mlx)
 {
 	t_sprite_data	data;
 	t_sprite_render	render;
-	float			zbuffer[mlx->win_width];
+	float			zbuffer[100000];
 	int				i;
 
 	data.zbuffer = zbuffer;

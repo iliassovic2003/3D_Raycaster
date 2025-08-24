@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils_02.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:10 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:27:22 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	draw_keycard(t_mlx *mlx, t_sprite sprite, int size, int color)
@@ -17,7 +29,7 @@ static void	draw_keycard(t_mlx *mlx, t_sprite sprite, int size, int color)
 		while (tmp.j < card_size)
 		{
 			put_pixel_to_img(mlx, tmp.x + tmp.i - card_size / 2, tmp.y + tmp.j
-					- card_size / 2, color);
+				- card_size / 2, color);
 			tmp.j++;
 		}
 		tmp.i++;
@@ -59,7 +71,9 @@ static void	draw_direction_line(t_mlx *mlx, t_tmp2 tmp)
 
 	tmp2.x = tmp.i - tmp.x;
 	tmp2.y = tmp.j - tmp.y;
-	tmp.i = abs(tmp2.x) > abs(tmp2.y) ? abs(tmp2.x) : abs(tmp2.y);
+	tmp.i = abs(tmp2.y);
+	if (abs(tmp2.x) > abs(tmp2.y))
+		tmp.i = abs(tmp2.x);
 	tmp2.fx = tmp2.x / (float)tmp.i;
 	tmp2.fy = tmp2.y / (float)tmp.i;
 	x = tmp.x;

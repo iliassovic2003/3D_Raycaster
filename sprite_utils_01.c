@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_utils_01.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:24:34 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:24:35 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	init_ray_casting_v2(t_mlx *mlx, t_ray_data *ray)
@@ -64,16 +76,16 @@ static void	perform_dda(t_mlx *mlx, t_ray_data *ray)
 		if (ray->map_x < 0 || ray->map_x >= mlx->map.width || ray->map_y < 0
 			|| ray->map_y >= mlx->map.height)
 			break ;
-		if (mlx->map.map2D[ray->map_y][ray->map_x] == '1')
+		if (mlx->map.map2d[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
 
 void	calculate_zbuffer(t_mlx *mlx, float *zbuffer)
 {
-	int x;
-	t_ray_data ray;
-	float perp_wall_dist;
+	int			x;
+	t_ray_data	ray;
+	float		perp_wall_dist;
 
 	x = 0;
 	while (x < mlx->win_width)

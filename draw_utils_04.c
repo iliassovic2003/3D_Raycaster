@@ -1,4 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils_04.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:17 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:36:33 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
+
+static void	choose_texturev2(t_render_ray *ray, int *num)
+{
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir_x > 0)
+			*num = 2;
+		else
+			*num = 3;
+	}
+	else
+	{
+		if (ray->ray_dir_y > 0)
+			*num = 1;
+		else
+			*num = 0;
+	}
+}
 
 static void	choose_texture(t_mlx *mlx, t_render_ray *ray,
 		t_texture_data *tex_data)
@@ -15,10 +45,7 @@ static void	choose_texture(t_mlx *mlx, t_render_ray *ray,
 		tex_data->texture = &mlx->exit_door.texture;
 	else
 	{
-		if (ray->side == 0)
-			tex_num = (ray->ray_dir_x > 0) ? 2 : 3;
-		else
-			tex_num = (ray->ray_dir_y > 0) ? 1 : 0;
+		choose_texturev2(ray, &tex_num);
 		tex_data->texture = &mlx->textures[tex_num];
 	}
 }
@@ -41,7 +68,6 @@ static void	calculate_texture_position(t_mlx *mlx, t_render_ray *ray,
 		tex_data->tex_x = 0;
 	if (tex_data->tex_x >= tex_data->texture->width)
 		tex_data->tex_x = tex_data->texture->width - 1;
-		
 	tex_data->step = (float)tex_data->texture->height / ray->line_height;
 	tex_data->tex_pos = (ray->draw_start - (int)(mlx->win_height / 2)
 			+ (int)(ray->line_height / 2)) * tex_data->step;
@@ -55,7 +81,7 @@ static void	draw_textured_wall(t_mlx *mlx, t_render_ray *ray,
 	int				tex_y;
 	unsigned int	color;
 
-	y = ray->draw_start  -1;
+	y = ray->draw_start - 1;
 	while (++y < ray->draw_end)
 	{
 		if (tex_data->is_door || tex_data->is_exit_door)

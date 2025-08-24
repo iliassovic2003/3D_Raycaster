@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:29 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:23:30 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 void	free_map(t_mlx *mlx)
@@ -5,14 +17,14 @@ void	free_map(t_mlx *mlx)
 	int	y;
 
 	y = 0;
-	if (!mlx->map.map2D)
+	if (!mlx->map.map2d)
 		return ;
 	while (y < mlx->map.height)
 	{
-		free(mlx->map.map2D[y]);
+		free(mlx->map.map2d[y]);
 		y++;
 	}
-	free(mlx->map.map2D);
+	free(mlx->map.map2d);
 }
 
 static void	free_resv2(t_mlx *mlx)

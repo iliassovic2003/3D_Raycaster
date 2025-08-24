@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils_03.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:13 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:28:37 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	mini_dim(t_mlx *mlx, int width, int height, t_mini_data *data)
@@ -7,7 +19,9 @@ static void	mini_dim(t_mlx *mlx, int width, int height, t_mini_data *data)
 
 	tile_width = width / mlx->map.width;
 	tile_height = height / mlx->map.height;
-	data->tile_size = tile_width < tile_height ? tile_width : tile_height;
+	data->tile_size = tile_height;
+	if (tile_width < tile_height)
+		data->tile_size = tile_width;
 	if (data->tile_size < 1)
 		data->tile_size = 1;
 	data->actual_width = data->tile_size * mlx->map.width;
@@ -48,7 +62,7 @@ static void	draw_minimap_walls(t_mlx *mlx, t_mini_data *data)
 		{
 			tmp.x = 10 + x * data->tile_size;
 			tmp.y = 10 + y * data->tile_size;
-			if (mlx->map.map2D[y][x] == '1')
+			if (mlx->map.map2d[y][x] == '1')
 				draw_hollow_square(mlx, tmp);
 			x++;
 		}

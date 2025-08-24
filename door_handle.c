@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door_handle.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:04 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:25:59 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	locked_door(t_mlx *mlx, int door_x, int door_y)
@@ -6,7 +18,7 @@ static void	locked_door(t_mlx *mlx, int door_x, int door_y)
 		&& mlx->player.holding_keycard_type == 1)
 	{
 		mlx->door.is_locked = 0;
-		mlx->map.map2D[door_y][door_x] = '0';
+		mlx->map.map2d[door_y][door_x] = '0';
 		printf("You unlock the door with the Green Keycard!\n");
 	}
 	else if (mlx->player.has_green_keycard)
@@ -22,11 +34,11 @@ static void	open_door(t_mlx *mlx, int door_x, int door_y)
 
 	player_x = (int)mlx->player.p_x;
 	player_y = (int)mlx->player.p_y;
-	if (mlx->map.map2D[door_y][door_x] == '0')
+	if (mlx->map.map2d[door_y][door_x] == '0')
 	{
 		if (player_x != door_x || player_y != door_y)
 		{
-			mlx->map.map2D[door_y][door_x] = '1';
+			mlx->map.map2d[door_y][door_x] = '1';
 			printf("Door closed with Green Keycard\n");
 		}
 		else
@@ -34,7 +46,7 @@ static void	open_door(t_mlx *mlx, int door_x, int door_y)
 	}
 	else
 	{
-		mlx->map.map2D[door_y][door_x] = '0';
+		mlx->map.map2d[door_y][door_x] = '0';
 		printf("Door opened with Green Keycard\n");
 	}
 }
@@ -51,7 +63,7 @@ static int	handle_green_door(t_mlx *mlx, float door_dist)
 	if (mlx->door.is_locked)
 		locked_door(mlx, door_x, door_y);
 	else if (mlx->player.is_holding_keycard
-			&& mlx->player.holding_keycard_type == 1)
+		&& mlx->player.holding_keycard_type == 1)
 		open_door(mlx, door_x, door_y);
 	else
 		printf("You need to equip the Green Keycard to operate this door.\n");

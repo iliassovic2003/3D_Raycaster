@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils_05.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:20 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:23:21 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	init_render_rayv2(t_mlx *mlx, t_render_ray *ray)
@@ -64,7 +76,7 @@ void	execute_render_dda(t_mlx *mlx, t_render_ray *ray)
 		if (ray->map_x < 0 || ray->map_x >= mlx->map.width || ray->map_y < 0
 			|| ray->map_y >= mlx->map.height)
 			break ;
-		if (mlx->map.map2D[ray->map_y][ray->map_x] == '1')
+		if (mlx->map.map2d[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }

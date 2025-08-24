@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_player_03.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:24:24 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:46:57 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	pickup_green(t_mlx *mlx)
@@ -28,13 +40,13 @@ int	game_loop(t_mlx *mlx)
 	mlx->animation_timer += 0.02f;
 	if (mlx->animation_timer > 100.0f)
 		mlx->animation_timer = 0.0f;
-	if (mlx->green_keycard.visible &&
-		(int)mlx->green_keycard.x == player_tile_x &&
-		(int)mlx->green_keycard.y == player_tile_y)
+	if (mlx->green_keycard.visible
+		&& (int)mlx->green_keycard.x == player_tile_x
+		&& (int)mlx->green_keycard.y == player_tile_y)
 		pickup_green(mlx);
-	if (mlx->white_keycard.visible &&
-		(int)mlx->white_keycard.x == player_tile_x &&
-		(int)mlx->white_keycard.y == player_tile_y)
+	if (mlx->white_keycard.visible
+		&& (int)mlx->white_keycard.x == player_tile_x
+		&& (int)mlx->white_keycard.y == player_tile_y)
 		pickup_white(mlx);
 	handle_movement(mlx);
 	render_3d_view(mlx);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils_06.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:25 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:23:26 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color)
@@ -26,7 +38,7 @@ unsigned int	get_pixel_color(t_img *texture, int x, int y)
 
 static unsigned int	color_to_int(t_color color)
 {
-	return ((color.R * 256 * 256) + (color.G * 256) + color.B);
+	return ((color.r * 256 * 256) + (color.g * 256) + color.b);
 }
 
 void	draw_floor(t_mlx *mlx, t_render_ray *ray, int x)

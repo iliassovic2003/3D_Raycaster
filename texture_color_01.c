@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_color_01.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:25:02 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:25:03 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static int	load_color_v2(int *r, int *g, int *b, char *line)
@@ -6,8 +18,8 @@ static int	load_color_v2(int *r, int *g, int *b, char *line)
 
 	split_tmp = ft_split(line, ',');
 	free(line);
-	if (!split_tmp || !split_tmp[0] || !split_tmp[1] 
-			|| !split_tmp[2] || split_tmp[3])
+	if (!split_tmp || !split_tmp[0] || !split_tmp[1] || !split_tmp[2]
+		|| split_tmp[3])
 	{
 		printf("Color Error: Misconfiguration Error\n");
 		free_arr(split_tmp);
@@ -27,28 +39,28 @@ static int	load_color_v2(int *r, int *g, int *b, char *line)
 
 static int	load_color(char *line, t_mlx *mlx, int i)
 {
-	int		r;
-	int		g;
-	int		b;
+	int	r;
+	int	g;
+	int	b;
 
 	if (load_color_v2(&r, &g, &b, line))
 		return (1);
 	if (i == 0)
 	{
-		mlx->floor.R = r;
-		mlx->floor.G = g;
-		mlx->floor.B = b;
+		mlx->floor.r = r;
+		mlx->floor.g = g;
+		mlx->floor.b = b;
 	}
 	else
 	{
-		mlx->ceiling.R = r;
-		mlx->ceiling.G = g;
-		mlx->ceiling.B = b;
+		mlx->ceiling.r = r;
+		mlx->ceiling.g = g;
+		mlx->ceiling.b = b;
 	}
 	return (0);
 }
 
-static void printv2(char *msg, int *exit_error)
+static void	printv2(char *msg, int *exit_error)
 {
 	if (msg)
 		printf("%s", msg);
@@ -62,8 +74,7 @@ int	parse_color(char *line, t_mlx *mlx)
 
 	exit_error = 0;
 	split_tmp = ft_split(line, ' ');
-	if (!split_tmp || !split_tmp[0] || !split_tmp[1]
-			|| split_tmp[2])
+	if (!split_tmp || !split_tmp[0] || !split_tmp[1] || split_tmp[2])
 		printv2("Color Error: Misconfiguration Error\n", &exit_error);
 	else if (!ft_strcmp(split_tmp[0], "F"))
 	{

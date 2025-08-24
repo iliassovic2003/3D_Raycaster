@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils_03.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:23:55 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:23:56 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 static void	still_exiting(t_mlx *mlx)
@@ -12,7 +24,7 @@ static void	still_exiting(t_mlx *mlx)
 		free(mlx->mlx_ptr);
 		mlx->mlx_ptr = NULL;
 	}
-	if (mlx->map.map2D)
+	if (mlx->map.map2d)
 		free_map(mlx);
 }
 
@@ -64,7 +76,7 @@ static void	check_count(int count, char *line, t_mlx *mlx, int fd)
 	line = NULL;
 }
 
-static void first_clean(char *line, int fd)
+static void	first_clean(char *line, int fd)
 {
 	if (line)
 		free(line);

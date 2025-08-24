@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils_04.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/24 02:24:00 by izahr             #+#    #+#             */
+/*   Updated: 2025/08/24 02:24:01 by izahr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3D.h"
 
 int	init_map(t_mlx *mlx)
@@ -6,22 +18,22 @@ int	init_map(t_mlx *mlx)
 	int	j;
 
 	i = 0;
-	mlx->map.map2D = (char **)malloc(sizeof(char *) * mlx->map.height);
-	if (!mlx->map.map2D)
+	mlx->map.map2d = (char **)malloc(sizeof(char *) * mlx->map.height);
+	if (!mlx->map.map2d)
 		return (1);
 	while (i < mlx->map.height)
 	{
-		mlx->map.map2D[i] = (char *)malloc(sizeof(char) * mlx->map.width);
-		if (!mlx->map.map2D[i])
+		mlx->map.map2d[i] = (char *)malloc(sizeof(char) * mlx->map.width);
+		if (!mlx->map.map2d[i])
 		{
 			while (--i >= 0)
-				free(mlx->map.map2D[i]);
-			free(mlx->map.map2D);
+				free(mlx->map.map2d[i]);
+			free(mlx->map.map2d);
 			return (1);
 		}
 		j = -1;
 		while (++j < mlx->map.width)
-			mlx->map.map2D[i][j] = '-';
+			mlx->map.map2d[i][j] = '-';
 		i++;
 	}
 	return (0);
@@ -38,13 +50,17 @@ int	check_map(t_mlx mlx)
 		j = 0;
 		while (j < mlx.map.width)
 		{
-			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i][j + 1] || mlx.map.map2D[i][j + 1] == '-'))
+			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i][j + 1]
+					|| mlx.map.map2d[i][j + 1] == '-'))
 				return (1);
-			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i + 1][j] || mlx.map.map2D[i + 1][j] == '-'))
+			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i + 1][j]
+					|| mlx.map.map2d[i + 1][j] == '-'))
 				return (1);
-			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i][j - 1] || mlx.map.map2D[i][j - 1] == '-'))
+			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i][j - 1]
+					|| mlx.map.map2d[i][j - 1] == '-'))
 				return (1);
-			if (mlx.map.map2D[i][j] == '0' && (!mlx.map.map2D[i - 1][j] || mlx.map.map2D[i - 1][j] == '-'))
+			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i - 1][j]
+					|| mlx.map.map2d[i - 1][j] == '-'))
 				return (1);
 			j++;
 		}

@@ -1,7 +1,7 @@
 NO ./textures/redbrick.xpm
 SO ./textures/STONE2.xpm
 WE ./textures/brick_wall.xpm
-EA ./textures/planks.xdpm
+EA ./textures/planks.xpm
 
 F 0,60,0
 C 173,216,239
