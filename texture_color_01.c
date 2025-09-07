@@ -6,16 +6,46 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:25:02 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:25:03 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/07 18:08:48 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3D.h"
 
+static int	is_digit(char *line)
+{
+	int i;
+	int k;
+
+	i = 0;
+	k = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			k++;
+		else if (line[i] != ',' && (line[i] < '0' || line[i] > '9'))
+		{
+			printf("Color Error: Misconfiguration Error\n");
+			free(line);
+			return (1);
+		}
+		i++;
+	}
+	if (k != 2)
+	{
+		printf("Color Error: Misconfiguration Error\n");
+		free(line);
+		return (1);
+	}
+	return (0);
+}
+
 static int	load_color_v2(int *r, int *g, int *b, char *line)
 {
 	char	**split_tmp;
 
+	if (is_digit(line))
+		return (1);
 	split_tmp = ft_split(line, ',');
 	free(line);
 	if (!split_tmp || !split_tmp[0] || !split_tmp[1] || !split_tmp[2]
