@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:24:13 by izahr             #+#    #+#             */
-/*   Updated: 2025/09/07 17:30:47 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/07 18:26:04 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	load_exit_door(t_mlx *mlx, int width, int height)
 	{
 		printf("Error loading exit door texture\n");
 		mlx_destroy_image(mlx->mlx_ptr, mlx->door.texture.img_ptr);
-			return (1);
+		return (1);
 	}
 	mlx->exit_door.texture.width = width;
 	mlx->exit_door.texture.height = height;
