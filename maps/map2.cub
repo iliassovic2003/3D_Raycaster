@@ -1,0 +1,12 @@
+NO ./textures/redbrick.xpm
+SO ./textures/wood.xpm
+EA ./textures/planks.xpm
+WE ./textures/brick_wall.xpm
+
+F 165,11,11
+C 173,216,230
+
+11111111111111
+10000N0001   11
+10000001111111
+11111111111111

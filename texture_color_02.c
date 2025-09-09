@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:25:06 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 03:03:44 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/08 20:39:59 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int	load_textures(char *line, t_mlx *mlx)
 		printf("Map Error: No Texture Was Given\n");
 		exit_error = 1;
 	}
-	else if (!ft_strcmp(split_tmp[0], "NO"))
+	else if (!ft_strcmp(split_tmp[0], "NO") && !mlx->textures[0].img_ptr)
 		exit_error = load_texture(split_tmp[1], mlx, 1);
-	else if (!ft_strcmp(split_tmp[0], "SO"))
+	else if (!ft_strcmp(split_tmp[0], "SO") && !mlx->textures[1].img_ptr)
 		exit_error = load_texture(split_tmp[1], mlx, 2);
-	else if (!ft_strcmp(split_tmp[0], "WE"))
+	else if (!ft_strcmp(split_tmp[0], "WE") && !mlx->textures[2].img_ptr)
 		exit_error = load_texture(split_tmp[1], mlx, 3);
-	else if (!ft_strcmp(split_tmp[0], "EA"))
+	else if (!ft_strcmp(split_tmp[0], "EA") && !mlx->textures[3].img_ptr)
 		exit_error = load_texture(split_tmp[1], mlx, 4);
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:23:46 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:23:47 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/08 20:53:00 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	init_game_state(t_mlx *mlx)
 	mlx->exit_door.door_y = -1;
 	mlx->door.door_x = -1;
 	mlx->door.door_y = -1;
+	mlx->floor.r = -1;
+	mlx->ceiling.r = -1;
 }
 
 int	main(int argc, char **argv)

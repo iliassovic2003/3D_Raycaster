@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:24:00 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:24:01 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/09 02:09:14 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,26 @@ int	check_map(t_mlx mlx)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < mlx.map.height)
+	i = 0;
+	while (i < mlx.map.height)
 	{
 		j = 0;
 		while (j < mlx.map.width)
 		{
-			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i][j + 1]
-					|| mlx.map.map2d[i][j + 1] == '-'))
-				return (1);
-			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i + 1][j]
-					|| mlx.map.map2d[i + 1][j] == '-'))
-				return (1);
-			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i][j - 1]
-					|| mlx.map.map2d[i][j - 1] == '-'))
-				return (1);
-			if (mlx.map.map2d[i][j] == '0' && (!mlx.map.map2d[i - 1][j]
-					|| mlx.map.map2d[i - 1][j] == '-'))
-				return (1);
+			if (mlx.map.map2d[i][j] == '0')
+			{
+				if (j + 1 >= mlx.map.width || mlx.map.map2d[i][j + 1] == '-')
+					return (1);
+				if (i + 1 >= mlx.map.height || mlx.map.map2d[i + 1][j] == '-')
+					return (1);
+				if (j - 1 < 0 || mlx.map.map2d[i][j - 1] == '-')
+					return (1);
+				if (i - 1 < 0 || mlx.map.map2d[i - 1][j] == '-')
+					return (1);
+			}
 			j++;
 		}
+		i++;
 	}
 	return (0);
 }

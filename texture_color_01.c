@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:25:02 by izahr             #+#    #+#             */
-/*   Updated: 2025/09/07 18:25:48 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/08 20:57:04 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ int	parse_color(char *line, t_mlx *mlx)
 	split_tmp = ft_split(line, ' ');
 	if (!split_tmp || !split_tmp[0] || !split_tmp[1] || split_tmp[2])
 		printv2("Color Error: Misconfiguration Error\n", &exit_error);
-	else if (!ft_strcmp(split_tmp[0], "F"))
+	else if (!ft_strcmp(split_tmp[0], "F") && mlx->floor.r == -1)
 	{
 		if (load_color(ft_strtrim(split_tmp[1]), mlx, 0))
 			exit_error = 1;
 	}
-	else if (!ft_strcmp(split_tmp[0], "C"))
+	else if (!ft_strcmp(split_tmp[0], "C") && mlx->ceiling.r == -1)
 	{
 		if (load_color(ft_strtrim(split_tmp[1]), mlx, 1))
 			exit_error = 1;
