@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:24:41 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:54:20 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/09 02:32:12 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	init_sprite_render(t_mlx *mlx, t_sprite_data *data,
 {
 	float	inv_det;
 
-	render->render_x = data->sprites[i]->x + data->float_offset;
-	render->render_y = data->sprites[i]->y;
+	render->render_x = data->sprites[i]->x + data->float_offset / 8;
+	render->render_y = data->sprites[i]->y + data->float_offset;
 	render->sprite_x = render->render_x - mlx->player.p_x;
 	render->sprite_y = render->render_y - mlx->player.p_y;
 	inv_det = 1.0 / (mlx->player.plane_x * mlx->player.dir_y - mlx->player.dir_x

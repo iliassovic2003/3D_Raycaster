@@ -1,7 +1,7 @@
-NO texture/simonkraft/bookshelf.xpm
-SO texture/simonkraft/bookshelf_01.xpm
-WE texture/simonkraft/bookshelf_02.xpm
-EA texture/simonkraft/bookshelf_03.xpm
+NO new_textures/simonkraft/bookshelf.xpm
+SO new_textures/simonkraft/bookshelf_01.xpm
+WE new_textures/simonkraft/bookshelf_02.xpm
+EA new_textures/simonkraft/bookshelf_03.xpm
 
 F 139,99,58
 C 171,154,137

@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:24:24 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:46:57 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/09 02:21:54 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	game_loop(t_mlx *mlx)
 
 	player_tile_x = (int)mlx->player.p_x;
 	player_tile_y = (int)mlx->player.p_y;
-	mlx->animation_timer += 0.02f;
-	if (mlx->animation_timer > 100.0f)
+	mlx->animation_timer += 0.04f;
+	if (mlx->animation_timer > 70.0f)
 		mlx->animation_timer = 0.0f;
 	if (mlx->green_keycard.visible
 		&& (int)mlx->green_keycard.x == player_tile_x

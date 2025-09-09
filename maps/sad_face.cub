@@ -1,7 +1,7 @@
-NO texture/simonkraft/soul_sand.xpm
-SO texture/simonkraft/soul_soil_01.xpm
-WE texture/simonkraft/soul_soil.xpm
-EA texture/simonkraft/soul_sand.xpm
+NO new_textures/simonkraft/soul_sand.xpm
+SO new_textures/simonkraft/soul_soil_01.xpm
+WE new_textures/simonkraft/soul_soil.xpm
+EA new_textures/simonkraft/soul_sand.xpm
 
 C 53,41,34
 F 45,33,27

@@ -1,15 +1,15 @@
-WE texture/wolfenstein/eagle.xpm
+WE new_textures/wolfenstein/eagle.xpm
 
 
 
-NO texture/wolfenstein/grey_stone.xpm
+NO new_textures/wolfenstein/grey_stone.xpm
 
 
 
-SO texture/wolfenstein/red_brick.xpm
+SO new_textures/wolfenstein/red_brick.xpm
 
 
-EA texture/wolfenstein/mossy.xpm
+EA new_textures/wolfenstein/mossy.xpm
 
 
 
