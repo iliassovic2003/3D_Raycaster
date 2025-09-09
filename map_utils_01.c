@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:23:49 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:39:44 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/09 23:43:12 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	fill_map_loop(char *line, t_mlx *mlx, t_tmp2 tmp, int *flag)
 		else if (line[tmp.i] == 'Z')
 			set_keycard(tmp, mlx, 'w');
 		else if (line[tmp.i] == '\n')
-			;
+			mlx->map.map2d[tmp.j][tmp.i] = '\0';
 		else
 			*flag = 2;
 		tmp.i++;

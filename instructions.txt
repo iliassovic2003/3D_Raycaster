@@ -1,5 +1,0 @@
-N,S,E or W player’s spawn position and orientation.
-0 for an empty space.
-1 for a wall.
-2 for door that requires G; green keycard.
-3 for exit that requires Z; white keycard.

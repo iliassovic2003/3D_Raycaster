@@ -6,7 +6,7 @@
 /*   By: izahr <izahr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:23:52 by izahr             #+#    #+#             */
-/*   Updated: 2025/08/24 02:23:53 by izahr            ###   ########.fr       */
+/*   Updated: 2025/09/09 23:55:37 by izahr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,11 @@ int	fill_map_data(t_mlx *mlx, int fd, int offset)
 		}
 		fill_map(line, mlx, map_line++, &flag);
 		free(line);
+		if (flag == 2)
+			break ;
 		line = get_next_line(fd, 0);
 	}
-	cleanup_static(fd);
-	return (flag);
+	if (line && *line == '\n')
+		free(line);
+	return (cleanup_static(fd), flag);
 }

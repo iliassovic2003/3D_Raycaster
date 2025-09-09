@@ -27,6 +27,4 @@ fclean: clean
 	@echo "$(RED)💫 finishing the cleaning...$(RESET)"
 	@rm -rf $(NAME)
 
-ilias: all clean
-
 re: fclean all
