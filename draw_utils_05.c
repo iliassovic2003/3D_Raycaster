@@ -75,7 +75,10 @@ void	execute_render_dda(t_mlx *mlx, t_render_ray *ray)
 		}
 		if (ray->map_x < 0 || ray->map_x >= mlx->map.width || ray->map_y < 0
 			|| ray->map_y >= mlx->map.height)
+		{
+			ray->hit = 1;
 			break ;
+		}
 		if (mlx->map.map2d[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
