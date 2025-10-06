@@ -1,8 +1,5 @@
-# 3D Raycaster
-
-A C-based 3D raycasting engine for creating pseudo-3D environments from 2D data.
-
-![Raycaster Demo]
+"Maybe when i grow up, i'll be John Carmack" said most of earlier generation, has become one of the most possible dream to achieve, to mimic one of the first and original first person shooter to be created, which was created using the raycaster technology.
+Today, i am creating a mediocre demo, capable to show you the priniciples of the raycaster, enjoy
 
 ## Overview
 
