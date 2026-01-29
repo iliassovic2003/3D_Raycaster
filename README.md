@@ -111,4 +111,5 @@ This project is licensed under the **MIT License**. For more details, please ref
 
 - Special thanks to **MiniLibX** for providing a lightweight graphics framework.
 - Classic raycasting techniques inspired by games like **Wolfenstein 3D**.
-- Group project done with @maywanel
+- Group project done with ![maywanel](https://github.com/maywanel)
+
