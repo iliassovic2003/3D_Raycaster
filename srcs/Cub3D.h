@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
